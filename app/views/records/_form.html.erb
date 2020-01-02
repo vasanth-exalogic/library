@@ -17,15 +17,12 @@
 
   <div class="field">
     <%= form.label :book %>
-    <%= form.number_field :book_id %>
+    <%= form.select :book_id, @temp %>
   </div>
 
-  <div class="field">
-    <%= form.label :due_date %>
-    <%= form.date_select :due_date %>
-  </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>

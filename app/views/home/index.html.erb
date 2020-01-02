@@ -48,8 +48,8 @@
                     <tr>
                       <td><%= user.email%></td>
                       <td><%= link_to "Lend Book", new_record_path(user)%></td>
-                      <td><%= link_to "Books Taken"%></td>
-                      <td><%= link_to "Delete User"%></td>
+                      <td><%= link_to "Books Taken", show_record_path(user)%></td>
+                      <td><%= link_to "Delete User", delete_user_path(user), method: :delete, data: {confirm: "Are you sure?"}%></td>
                     </tr>
                   <% end %>
                 <% end %>
@@ -66,7 +66,30 @@
         </table>
       </fieldset>
     <% else %>
-      User
+      <fieldset>
+        <legend><strong><%= current_user.email %></strong></legend>
+        <table>
+          <thead>
+            <tr>
+              <td><strong>Title</strong></td>
+              <td><strong>Description</strong></td>
+              <td><strong>Due Date</strong></td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @records.each do |record| %>
+              <tr>
+                <% temp = Book.find(record.book_id) %>
+                <td><%= temp.title %></td>
+                <td><%= truncate(temp.description, length: 150) %></td>
+                <td><%= record.due_date %></td>
+                <td><%= link_to "Renew book", renew_book_path(record) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </fieldset>
     <% end %>
   </body>
 </html>

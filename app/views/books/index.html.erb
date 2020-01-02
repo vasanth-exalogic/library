@@ -19,7 +19,7 @@
       <tr>
         <td><%= book.isbn %></td>
         <td><%= book.title %></td>
-        <td><%= book.description %></td>
+        <td><%= truncate(book.description, :length => 200) %></td>
         <td><%= book.author %></td>
         <td><%= book.count %></td>
         <td><%= link_to 'Show', book %></td>

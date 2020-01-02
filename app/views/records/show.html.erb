@@ -1,19 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @record.user_id %>
-</p>
+<h1>Records</h1>
 
-<p>
-  <strong>Book:</strong>
-  <%= @record.book_id %>
-</p>
+<fieldset>
+  <legend><strong><%= @user.email %></strong></legend>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Due Date</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @records.each do |record| %>
+        <tr>
+          <td><%= Book.find(record.book_id).title %></td>
+          <td><%= record.due_date %></td>
+          <td><%= link_to "Return", record_path(record), method: :delete, data: {confirm: "Are you sure?"} %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</fieldset>
 
-<p>
-  <strong>Due date:</strong>
-  <%= @record.due_date %>
-</p>
-
-<%= link_to 'Edit', edit_record_path(@record) %> |
-<%= link_to 'Back', records_path %>
+<br>
+<%= link_to 'Back', home_path %><br>
+<%= link_to 'New Record', new_record_path(@user.id) %>

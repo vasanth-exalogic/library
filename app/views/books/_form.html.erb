@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= form.label :isbn %>
-    <%= form.text_field :isbn %>
+    <%= form.text_field :isbn, :pattern=>'\d*', :maxlength=>13, :minlength=>10, :required=>true %>
   </div>
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_area :title %>
+    <%= form.text_field :title, :required => true %>
   </div>
 
   <div class="field">
@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= form.label :count %>
-    <%= form.number_field :count %>
+    <%= form.number_field :count, :min => 0 %>
   </div>
 
   <div class="actions">
